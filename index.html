@@ -5,12 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="admin-dashboard.css" />
+    <script src="admin-dashboard.js" defer></script>
     <title>Admin Dashboard</title>
   </head>
   <body>
     <div id="sidebarDiv">
-      <div id="titleDiv"><p>My Hub</p></div>
-      <div id="activitiesDiv">
+      <button id="minimiseBtn">
+        <img src="./imgs/cross-23.png" alt="minimise" />
+      </button>
+      <div id="titleDiv" class="sidebarChild"><p>My Hub</p></div>
+      <div id="activitiesDiv" class="sidebarChild">
         <ul id="activitiesList">
           <li><a href="">Home</a></li>
           <li><a href="">Profile</a></li>
@@ -20,7 +24,7 @@
           <li><a href="">Communities</a></li>
         </ul>
       </div>
-      <div id="settingsDiv">
+      <div id="settingsDiv" class="sidebarChild">
         <ul id="settingsList">
           <li><a href="">Settings</a></li>
           <li><a href="">Support</a></li>
@@ -31,12 +35,45 @@
     <header>
       <div id="topHeader">
         <div id="srchInputDiv">
-          <img src="/imgs/search-icon.png" alt="search-icon" id="srchIcon" />
+          <img src="./imgs/search-icon.png" alt="search-icon" id="srchIcon" />
           <input type="search" id="srchInput" />
         </div>
+        <img src="./imgs/notification-bell.svg" id="notifIcon" />
+        <img src="./imgs/fd157ffd3c1db18123170d7a50685939.png" id="profPic" />
+        <p id="profName">John Doe</p>
       </div>
-      <div id="botHeader"></div>
+      <div id="botHeader">
+        <img src="./imgs/fd157ffd3c1db18123170d7a50685939.png" />
+        <p>Hi there,</p>
+        <p>John Doe</p>
+        <button>New</button>
+        <button>Upload</button>
+        <button>Share</button>
+      </div>
     </header>
-    <div id="mainContentDiv"></div>
+    <div id="mainContentDiv">
+      <p></p>
+      <p></p>
+      <p></p>
+      <div>
+        <h1>Bla bla</h1>
+        <h4>
+          jugo jugo jugo jugo jugo jugo jugo jugo jugo jugo jugo jugo jugo jugo
+          jugo
+        </h4>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </body>
 </html>
