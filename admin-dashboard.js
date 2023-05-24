@@ -5,10 +5,15 @@ const minimiseBtn = document.getElementById("minimiseBtn");
 const mainDiv = document.getElementById("mainContentDiv");
 const testDiv = document.getElementById("testDiv");
 const newBtn = document.getElementById("newBtn");
+const defaultCard = document.querySelectorAll(".defaultCard");
+
+defaultCard.forEach((element) => {
+  console.log(element);
+});
 
 function closeSideBar() {
   let id = null;
-  let pos = 17;
+  let pos = 15;
   clearInterval(id);
   id = setInterval(frame, 5);
   function frame() {
@@ -24,7 +29,7 @@ function closeSideBar() {
     } else {
       pos--;
       console.log(pos);
-      body.style.gridTemplate = `0.5fr 5fr/${pos + "vw"} 4fr 17vw`;
+      body.style.gridTemplate = `0.5fr 4fr/${pos + "vw"} 4fr 1fr`;
     }
   }
 }
@@ -38,12 +43,12 @@ function openSideBar() {
   clearInterval(id);
   id = setInterval(frame, 5);
   function frame() {
-    if (pos == 17) {
+    if (pos == 15) {
       clearInterval(id);
     } else {
       pos++;
       console.log(pos);
-      body.style.gridTemplate = `0.5fr 5fr/${pos + "vw"} 4fr 17vw`;
+      body.style.gridTemplate = `0.5fr 4fr/${pos + "vw"} 4fr 1fr`;
       sidebarChild.forEach((element) => {
         element.style.display = "";
         minimisedBtn.remove();
@@ -60,6 +65,8 @@ minimiseBtn.addEventListener("click", () => {
   closeSideBar();
 });
 
+function defaultCards() {}
+
 function createCard() {
   let newCard = document.createElement("div");
   let cardTitle = document.createElement("input");
@@ -67,6 +74,8 @@ function createCard() {
   if (cardTitle.value === "" || cardText.value === "") {
     newBtn.disabled = true;
   }
+  cardTitle.placeholder = "Item Name";
+  cardText.placeholder = "Location & Description";
   let btnDiv = document.createElement("div");
   let removeBtn = document.createElement("button");
   let removeImg = document.createElement("img");
@@ -97,37 +106,36 @@ function createCard() {
   shareImg.src = "./imgs/share.png";
 
   let inputTitle = document.createElement("h1");
-  let inputText = document.createElement("h4");
+  let inputText = document.createElement("h3");
 
-  cardTitle.addEventListener("keydown", (arg) => {
+  cardTitle.addEventListener("blur", (arg) => {
     console.log(arg.key);
-    if (arg.key === "Enter") {
-      inputTitle.textContent = cardTitle.value;
-      newCard.insertBefore(inputTitle, newCard.firstChild);
-      cardTitle.style.display = "none";
-      inputTitle.style.display = "";
-      if (inputTitle.textContent === "" || inputText.textContent === "") {
-        newBtn.disabled = true;
-      }
-      if (inputTitle.textContent != "" && inputText.textContent != "") {
-        newBtn.disabled = false;
-      }
+
+    inputTitle.textContent = cardTitle.value;
+    newCard.insertBefore(inputTitle, newCard.firstChild);
+    cardTitle.style.display = "none";
+    inputTitle.style.display = "";
+    if (inputTitle.textContent === "" || inputText.textContent === "") {
+      newBtn.disabled = true;
     }
+    if (inputTitle.textContent != "" && inputText.textContent != "") {
+      newBtn.disabled = false;
+    }
+    cardText.focus();
   });
-  cardText.addEventListener("keydown", (arg) => {
+  cardText.addEventListener("blur", (arg) => {
     console.log(arg.key);
-    if (arg.key === "Enter") {
-      inputText.textContent = cardText.value;
-      console.log(cardText.value);
-      newCard.insertBefore(inputText, newCard.childNodes[2]);
-      cardText.style.display = "none";
-      inputText.style.display = "";
-      if (inputTitle.textContent === "" || inputText.textContent === "") {
-        newBtn.disabled = true;
-      }
-      if (inputTitle.textContent != "" && inputText.textContent != "") {
-        newBtn.disabled = false;
-      }
+
+    inputText.textContent = cardText.value;
+    console.log(cardText.value);
+    newCard.insertBefore(inputText, newCard.childNodes[2]);
+    cardText.style.display = "none";
+    inputText.style.display = "";
+    if (inputTitle.textContent === "" || inputText.textContent === "") {
+      newBtn.disabled = true;
+    }
+    if (inputTitle.textContent != "" && inputText.textContent != "") {
+      newBtn.disabled = false;
     }
   });
   editBtn.addEventListener("click", () => {
