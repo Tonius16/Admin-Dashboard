@@ -230,7 +230,7 @@ header {
 #mainContentDiv {
   grid-column: 2/3;
   display: grid;
-  grid-template-rows: 10vh repeat(3, 40vh);
+  grid-template-rows: 10vh repeat(2, 40vh);
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 40vh;
   align-items: center;
@@ -248,11 +248,18 @@ header {
   overflow: auto;
   display: grid;
   grid-template-rows: 1fr 4fr 1fr;
+  justify-items: center;
+}
+
+#mainContentDiv > div > h4 {
+  width: 99%;
+  height: 70%;
 }
 
 #mainContentDiv > div > div {
   display: flex;
   justify-content: end;
+  width: 100%;
   gap: 5px;
 }
 
@@ -260,6 +267,7 @@ header {
   width: clamp(1rem, 8.5vw, 2rem);
   border: none;
   background-color: rgba(127, 255, 212, 0);
+  align-self: flex-end;
 }
 
 #mainContentDiv > div > div > button > img {

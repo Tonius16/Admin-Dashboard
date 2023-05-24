@@ -62,15 +62,88 @@ minimiseBtn.addEventListener("click", () => {
 
 function createCard() {
   let newCard = document.createElement("div");
-  mainDiv.appendChild(newCard);
-  let cardTile = document.createElement("input");
-  cardTile.classList.add("cardTitle");
-  newCard.appendChild(cardTile);
-  let cardText = document.createElement("input");
-  cardText.classList.add("cardText");
-  newCard.appendChild(cardText);
+  let cardTitle = document.createElement("input");
+  let cardText = document.createElement("textarea");
+  if (cardTitle.value === "" || cardText.value === "") {
+    newBtn.disabled = true;
+  }
   let btnDiv = document.createElement("div");
+  let removeBtn = document.createElement("button");
+  let removeImg = document.createElement("img");
+  let editBtn = document.createElement("button");
+  let editImg = document.createElement("img");
+  let shareBtn = document.createElement("button");
+  let shareImg = document.createElement("img");
+  mainDiv.appendChild(newCard);
+  cardTitle.classList.add("cardTitle");
+  newCard.appendChild(cardTitle);
+  cardTitle.type = "text";
+  cardTitle.maxLength = "45";
+  cardTitle.style.width = "99%";
+  cardText.classList.add("cardText");
+  cardText.style.width = "99%";
+  cardText.style.height = "70%";
+  cardText.style.resize = "none";
+  newCard.appendChild(cardText);
   newCard.appendChild(btnDiv);
+  btnDiv.appendChild(editBtn);
+  editBtn.appendChild(editImg);
+  btnDiv.appendChild(removeBtn);
+  removeBtn.appendChild(removeImg);
+  btnDiv.appendChild(shareBtn);
+  shareBtn.appendChild(shareImg);
+  removeImg.src = "./imgs/remove.png";
+  editImg.src = "./imgs/edit.png";
+  shareImg.src = "./imgs/share.png";
+
+  let inputTitle = document.createElement("h1");
+  let inputText = document.createElement("h4");
+
+  cardTitle.addEventListener("keydown", (arg) => {
+    console.log(arg.key);
+    if (arg.key === "Enter") {
+      inputTitle.textContent = cardTitle.value;
+      newCard.insertBefore(inputTitle, newCard.firstChild);
+      cardTitle.style.display = "none";
+      inputTitle.style.display = "";
+      if (inputTitle.textContent === "" || inputText.textContent === "") {
+        newBtn.disabled = true;
+      }
+      if (inputTitle.textContent != "" && inputText.textContent != "") {
+        newBtn.disabled = false;
+      }
+    }
+  });
+  cardText.addEventListener("keydown", (arg) => {
+    console.log(arg.key);
+    if (arg.key === "Enter") {
+      inputText.textContent = cardText.value;
+      console.log(cardText.value);
+      newCard.insertBefore(inputText, newCard.childNodes[2]);
+      cardText.style.display = "none";
+      inputText.style.display = "";
+      if (inputTitle.textContent === "" || inputText.textContent === "") {
+        newBtn.disabled = true;
+      }
+      if (inputTitle.textContent != "" && inputText.textContent != "") {
+        newBtn.disabled = false;
+      }
+    }
+  });
+  editBtn.addEventListener("click", () => {
+    inputTitle.style.display = "none";
+    cardTitle.style.display = "";
+    inputText.style.display = "none";
+    cardText.style.display = "";
+    cardTitle.focus();
+  });
+  removeBtn.addEventListener("click", () => {
+    newCard.remove();
+  });
+  shareBtn.addEventListener("click", () => {
+    alert("A share window");
+  });
+  cardTitle.focus();
 }
 
 newBtn.addEventListener("click", () => {
