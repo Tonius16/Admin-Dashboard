@@ -6,10 +6,9 @@ const mainDiv = document.getElementById("mainContentDiv");
 const testDiv = document.getElementById("testDiv");
 const newBtn = document.getElementById("newBtn");
 const defaultCard = document.querySelectorAll(".defaultCard");
-
-defaultCard.forEach((element) => {
-  console.log(element);
-});
+const defaultTitle = document.querySelectorAll(".defaultTitle");
+const defaultText = document.querySelectorAll(".defaultText");
+const defaultBtn = document.querySelectorAll(".defaultBtn");
 
 function closeSideBar() {
   let id = null;
@@ -65,7 +64,35 @@ minimiseBtn.addEventListener("click", () => {
   closeSideBar();
 });
 
-function defaultCards() {}
+defaultCard.forEach((element) => {});
+defaultTitle.forEach((element) => {});
+defaultText.forEach((element) => {});
+defaultBtn.forEach((element) => {});
+
+function editDefaultCards() {
+  defaultCard.forEach((element) => {
+    let defaultCardTitle = document.createElement("input");
+    let defaultCardText = document.createElement("textarea");
+    defaultCardTitle.placeholder = "Item Name";
+    defaultCardText.placeholder = "Location & Description";
+    defaultCardTitle.value = defaultTitle.textContent;
+    element.insertBefore(defaultCardTitle, element.firstChild);
+    element.insertBefore(defaultCardText, element.childNodes[2]);
+  });
+
+  defaultTitle.forEach((element) => {
+    element.style.display = "none";
+  });
+
+  defaultText.forEach((element) => {
+    element.style.display = "none";
+  });
+}
+defaultBtn.forEach((element) => {
+  element.addEventListener("click", () => {
+    editDefaultCards();
+  });
+});
 
 function createCard() {
   let newCard = document.createElement("div");
@@ -108,36 +135,55 @@ function createCard() {
   let inputTitle = document.createElement("h1");
   let inputText = document.createElement("h3");
 
-  cardTitle.addEventListener("blur", (arg) => {
-    console.log(arg.key);
-
+  function editTitle() {
+    if (inputTitle.textContent != "" && inputText.textContent != "") {
+      newBtn.disabled = false;
+    }
     inputTitle.textContent = cardTitle.value;
     newCard.insertBefore(inputTitle, newCard.firstChild);
     cardTitle.style.display = "none";
     inputTitle.style.display = "";
-    if (inputTitle.textContent === "" || inputText.textContent === "") {
-      newBtn.disabled = true;
-    }
-    if (inputTitle.textContent != "" && inputText.textContent != "") {
-      newBtn.disabled = false;
-    }
     cardText.focus();
-  });
-  cardText.addEventListener("blur", (arg) => {
-    console.log(arg.key);
+    if (inputTitle.textContent === "") {
+      newBtn.disabled = true;
+      inputTitle.textContent = "TITLE";
+    }
+  }
 
+  function editText() {
     inputText.textContent = cardText.value;
-    console.log(cardText.value);
     newCard.insertBefore(inputText, newCard.childNodes[2]);
     cardText.style.display = "none";
     inputText.style.display = "";
-    if (inputTitle.textContent === "" || inputText.textContent === "") {
+    if (inputText.textContent === "") {
+      inputText.textContent = "DESCRIPTION";
       newBtn.disabled = true;
     }
     if (inputTitle.textContent != "" && inputText.textContent != "") {
       newBtn.disabled = false;
     }
+  }
+
+  cardTitle.addEventListener("blur", () => {
+    editTitle();
   });
+
+  cardTitle.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      editTitle();
+    }
+  });
+
+  cardText.addEventListener("blur", () => {
+    editText();
+  });
+
+  cardText.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      editText();
+    }
+  });
+
   editBtn.addEventListener("click", () => {
     inputTitle.style.display = "none";
     cardTitle.style.display = "";
@@ -147,6 +193,7 @@ function createCard() {
   });
   removeBtn.addEventListener("click", () => {
     newCard.remove();
+    newBtn.disabled = false;
   });
   shareBtn.addEventListener("click", () => {
     alert("A share window");
