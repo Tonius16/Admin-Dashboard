@@ -49,8 +49,7 @@ img {
 body {
   display: grid;
   overflow: auto;
-  grid-template: 0.5fr 4fr/15vw 4fr 1fr;
-  overflow: auto;
+  grid-template: 4fr/15vw 4fr 1fr;
   position: relative;
 }
 
@@ -263,6 +262,7 @@ header {
 #mainContentDiv > div > h3 {
   width: 99%;
   height: 70%;
+  font-size: clamp(0.8rem, 2.5vw, 1.5rem);
 }
 
 #mainContentDiv > div > div {
@@ -299,6 +299,65 @@ header {
   width: 90%;
   height: 90%;
   border: solid black;
+}
+
+#newsDiv {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  overflow: auto;
+}
+
+#newsDiv > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+}
+
+#newsDiv > div > p {
+  align-self: center;
+  font-weight: bold;
+  padding-top: 1vh;
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+}
+
+#newsDiv > div > ul {
+  width: 80%;
+  list-style: disc;
+  list-style-position: inside;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+#commuDiv {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  align-items: center;
+  overflow: auto;
+}
+
+#commuDiv > div {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+}
+
+#commuDiv > div > img {
+  width: clamp(2rem, 4.5vw, 3rem);
+  grid-row: 1/4;
+  margin-left: 0.3vw;
+}
+
+#commuDiv > div > p {
+  justify-self: center;
+  text-align: center;
+  justify-self: center;
+}
+
+#commuDiv > div > :nth-child(2) {
+  font-weight: bold;
 }
 
 #rightContent > p {
