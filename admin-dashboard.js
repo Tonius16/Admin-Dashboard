@@ -5,10 +5,13 @@ const minimiseBtn = document.getElementById("minimiseBtn");
 const mainDiv = document.getElementById("mainContentDiv");
 const testDiv = document.getElementById("testDiv");
 const newBtn = document.getElementById("newBtn");
+const uploadBtn = document.getElementById("uploadBtn");
+const headShareBtn = document.getElementById("shareBtn");
+const sidebarLinks = document.querySelectorAll("a");
 
 function closeSideBar() {
   let id = null;
-  let pos = 15;
+  let pos = 13;
   clearInterval(id);
   id = setInterval(frame, 5);
   function frame() {
@@ -38,7 +41,7 @@ function openSideBar() {
   clearInterval(id);
   id = setInterval(frame, 5);
   function frame() {
-    if (pos == 15) {
+    if (pos == 13) {
       clearInterval(id);
     } else {
       pos++;
@@ -127,6 +130,7 @@ function createCard(cardDefinition = null) {
   }
 
   let btnDiv = document.createElement("div");
+  let cardBar = document.createElement("div");
   let removeBtn = document.createElement("button");
   let removeImg = document.createElement("img");
   let editBtn = document.createElement("button");
@@ -138,10 +142,16 @@ function createCard(cardDefinition = null) {
   newCard.appendChild(cardTitle);
   cardTitle.type = "text";
   cardTitle.maxLength = "35";
+  cardTitle.style.width = "50%";
+  cardTitle.style.height = "70%";
+  cardTitle.style.alignSelf = "center";
+  newCard.insertBefore(cardBar, newCard.firstChild);
   cardText.classList.add("cardText");
   newCard.appendChild(cardText);
-  cardText.style.width = "99%";
+  cardText.style.width = "90%";
   cardText.style.height = "70%";
+  cardText.style.resize = "none";
+  cardText.style.alignSelf = "center";
   newCard.appendChild(btnDiv);
   btnDiv.appendChild(editBtn);
   editBtn.appendChild(editImg);
@@ -155,7 +165,7 @@ function createCard(cardDefinition = null) {
 
   function editTitle() {
     inputTitle.textContent = cardTitle.value;
-    newCard.insertBefore(inputTitle, newCard.firstChild);
+    newCard.insertBefore(inputTitle, newCard.childNodes[2]);
     cardTitle.style.display = "none";
     inputTitle.style.display = "";
     cardText.focus();
@@ -166,7 +176,7 @@ function createCard(cardDefinition = null) {
 
   function editText() {
     inputText.textContent = cardText.value;
-    newCard.insertBefore(inputText, newCard.childNodes[2]);
+    newCard.insertBefore(inputText, newCard.childNodes[3]);
     cardText.style.display = "none";
     inputText.style.display = "";
     if (inputText.textContent === "") {
@@ -182,25 +192,37 @@ function createCard(cardDefinition = null) {
     ) {
       cardTitle.style.display = "none";
       cardTitle = document.createElement("input");
-      newCard.insertBefore(cardTitle, newCard.firstChild);
+      newCard.insertBefore(cardTitle, newCard.childNodes[2]);
       cardTitle.type = "text";
       cardTitle.maxLength = "25";
+      cardTitle.style.width = "50%";
+      cardTitle.style.height = "70%";
+      cardTitle.style.alignSelf = "center";
       cardTitle.focus();
+      cardTitle.placeholder = "Item Name";
       cardTitle.addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
           editTitle();
         }
       });
+      cardTitle.addEventListener("blur", () => {
+        editTitle();
+      });
       cardText.style.display = "none";
       cardText = document.createElement("textArea");
-      newCard.insertBefore(cardText, newCard.childNodes[2]);
-      cardText.style.width = "99%";
+      newCard.insertBefore(cardText, newCard.childNodes[3]);
+      cardText.style.width = "90%";
       cardText.style.height = "70%";
       cardText.style.resize = "none";
+      cardText.style.alignSelf = "center";
+      cardText.placeholder = "Location & Description";
       cardText.addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
           editText();
         }
+      });
+      cardText.addEventListener("blur", () => {
+        editText();
       });
     } else {
       inputTitle.style.display = "none";
@@ -208,7 +230,6 @@ function createCard(cardDefinition = null) {
       inputText.style.display = "none";
       cardText.style.display = "";
       cardTitle.focus();
-      console.log("asd");
     }
   });
 
@@ -224,12 +245,20 @@ function createCard(cardDefinition = null) {
     }
   });
 
+  cardTitle.addEventListener("blur", () => {
+    editTitle();
+  });
+
+  cardText.addEventListener("blur", () => {
+    editText();
+  });
+
   removeBtn.addEventListener("click", () => {
     newCard.remove();
   });
 
   shareBtn.addEventListener("click", () => {
-    alert("A share window");
+    alert("¯\\_(ツ)_/¯");
   });
   cardTitle.focus();
 }
@@ -237,3 +266,20 @@ function createCard(cardDefinition = null) {
 newBtn.addEventListener("click", () => {
   createCard();
 });
+
+uploadBtn.addEventListener("click", () => {
+  alert("¯\\_(ツ)_/¯");
+});
+
+headShareBtn.addEventListener("click", () => {
+  alert("¯\\_(ツ)_/¯");
+});
+
+sidebarLinks.forEach((element) => {
+  element.href = "javascript:;";
+  element.addEventListener("click", () => {
+    alert("¯\\_(ツ)_/¯");
+  });
+});
+
+console.log(sidebarLinks);

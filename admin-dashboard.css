@@ -49,7 +49,7 @@ img {
 body {
   display: grid;
   overflow: auto;
-  grid-template: 4fr/15vw 4fr 1fr;
+  grid-template: 4fr/13vw 4fr 1fr;
   position: relative;
 }
 
@@ -70,6 +70,7 @@ body {
 
 #sidebarDiv > div > ul > li > a {
   color: black;
+  opacity: 80%;
 }
 
 #minimiseBtn {
@@ -92,7 +93,7 @@ body {
   text-align: center;
   justify-content: center;
   align-items: center;
-  font-size: clamp(1rem, 2.5vw, 2rem);
+  font-size: clamp(0.6rem, 2.5vw, 2rem);
 }
 
 #activitiesDiv {
@@ -102,7 +103,7 @@ body {
 }
 
 #activitiesList {
-  font-size: clamp(0.8rem, 2.5vw, 1.5rem);
+  font-size: clamp(0.4rem, 2.5vw, 1.5rem);
   display: grid;
   grid-template-rows: repeat(6, 5vh);
   justify-content: center;
@@ -117,7 +118,7 @@ body {
 }
 
 #settingsList {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-size: clamp(0.4rem, 2.5vw, 1.5rem);
   display: grid;
   grid-template-rows: repeat(3, 5vh);
   justify-content: center;
@@ -216,8 +217,10 @@ header {
 #botHeader > button {
   width: clamp(2.5rem, 8.5vw, 6rem);
   height: clamp(1rem, 8.5vw, 2rem);
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: clamp(0.6em, 2.5vw, 1em);
+  border-color: white;
+  background-color: white;
 }
 
 #botHeader :nth-child(4) {
@@ -233,6 +236,7 @@ header {
 }
 
 #mainContentDiv {
+  background-color: rgba(173, 156, 133, 0.315);
   grid-column: 2/3;
   display: grid;
   grid-template-rows: 10vh repeat(2, 40vh);
@@ -253,22 +257,61 @@ header {
 #mainContentDiv > div {
   width: 75%;
   height: 75%;
-  border: solid black;
   overflow: auto;
   display: grid;
   grid-template-rows: 1fr 4fr 1fr;
+  grid-template-columns: 1fr 15fr;
   justify-items: center;
+  box-shadow: 0px 6px 6px 6px rgba(0, 0, 0, 0.16);
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+#mainContentDiv > div > :nth-child(1) {
+  width: 100%;
+  padding: 0;
+  grid-row: 1/4;
+  background-color: bisque;
+}
+
+#mainContentDiv > div > h1 {
+  padding-top: 7px;
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  text-align: center;
 }
 
 #mainContentDiv > div > h3 {
-  width: 99%;
+  width: 90%;
   height: 70%;
-  font-size: clamp(0.8rem, 2.5vw, 1.5rem);
+  opacity: 80%;
+  font-size: clamp(0.6rem, 2.5vw, 1.3rem);
+  text-align: center;
+  align-self: center;
+  overflow: auto;
+}
+
+#mainContentDiv > div > input:focus {
+  appearance: none;
+  outline: none;
+  border-color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+#mainContentDiv > div > textarea {
+  appearance: none;
+  outline: none;
+  border-color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+#mainContentDiv > div > textarea:focus {
+  text-align: center;
 }
 
 #mainContentDiv > div > div {
   display: flex;
   justify-content: end;
+  padding-right: 10px;
   width: 100%;
   gap: 5px;
 }
@@ -277,7 +320,8 @@ header {
   width: clamp(1rem, 8.5vw, 2rem);
   border: none;
   background-color: rgba(127, 255, 212, 0);
-  align-self: flex-end;
+  align-self: center;
+  display: flex;
 }
 
 #mainContentDiv > div > div > button > img {
@@ -294,6 +338,7 @@ header {
   position: sticky;
   align-items: center;
   justify-items: center;
+  background-color: rgba(96, 96, 168, 0.158);
 }
 
 #rightContent > p {
@@ -304,7 +349,9 @@ header {
 #rightContent > div {
   width: 90%;
   height: 90%;
-  border: solid black;
+  box-shadow: 0px 6px 6px 6px rgba(0, 0, 0, 0.16);
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
 }
 
 #newsDiv {
@@ -318,6 +365,7 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 2vh;
+  border-bottom: solid rgba(0, 0, 0, 0.13);
 }
 
 #newsDiv > div > p {
@@ -336,10 +384,14 @@ header {
   gap: 1vh;
 }
 
+#newsDiv > div > ul > li {
+  text-align: center;
+  opacity: 80%;
+}
+
 #commuDiv {
   display: grid;
   grid-template-rows: repeat(4, 1fr);
-  align-items: center;
   overflow: auto;
 }
 
@@ -348,6 +400,7 @@ header {
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 1fr 1fr;
   align-items: center;
+  border-bottom: solid rgba(0, 0, 0, 0.13);
 }
 
 #commuDiv > div > img {
@@ -360,6 +413,7 @@ header {
   justify-self: center;
   text-align: center;
   justify-self: center;
+  opacity: 80%;
 }
 
 #commuDiv > div > :nth-child(2) {
