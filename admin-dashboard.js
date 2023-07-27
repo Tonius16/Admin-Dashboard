@@ -26,7 +26,6 @@ function closeSideBar() {
       });
     } else {
       pos--;
-      console.log(pos);
       body.style.gridTemplate = `4fr/${pos + "vw"} 4fr 1fr`;
     }
   }
@@ -45,7 +44,6 @@ function openSideBar() {
       clearInterval(id);
     } else {
       pos++;
-      console.log(pos);
       body.style.gridTemplate = `4fr/${pos + "vw"} 4fr 1fr`;
       sidebarChild.forEach((element) => {
         element.style.display = "";
@@ -170,7 +168,7 @@ function createCard(cardDefinition = null) {
     inputTitle.style.display = "";
     cardText.focus();
     if (inputTitle.textContent === "") {
-      inputTitle.textContent = "TITLE";
+      inputTitle.textContent = "Title";
     }
   }
 
@@ -180,7 +178,7 @@ function createCard(cardDefinition = null) {
     cardText.style.display = "none";
     inputText.style.display = "";
     if (inputText.textContent === "") {
-      inputText.textContent = "DESCRIPTION";
+      inputText.textContent = "Description";
     }
   }
 
@@ -233,6 +231,22 @@ function createCard(cardDefinition = null) {
     }
   });
 
+  function removeCardAnimation() {
+    let id = null;
+    let pos = 100;
+    clearInterval(id);
+    id = setInterval(frame, 3);
+    function frame() {
+      if (pos == 0) {
+        clearInterval(id);
+        newCard.remove();
+      } else {
+        pos--;
+        newCard.style.opacity = pos + "%";
+      }
+    }
+  }
+
   cardTitle.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       editTitle();
@@ -254,7 +268,7 @@ function createCard(cardDefinition = null) {
   });
 
   removeBtn.addEventListener("click", () => {
-    newCard.remove();
+    removeCardAnimation();
   });
 
   shareBtn.addEventListener("click", () => {
@@ -276,10 +290,13 @@ headShareBtn.addEventListener("click", () => {
 });
 
 sidebarLinks.forEach((element) => {
-  element.href = "javascript:;";
-  element.addEventListener("click", () => {
-    alert("¯\\_(ツ)_/¯");
-  });
+  if (element.id === "gitBtn") {
+    return;
+  } else {
+    element.href = "javascript:;";
+    element.addEventListener("click", () => {
+      alert("¯\\_(ツ)_/¯");
+      console.log(element);
+    });
+  }
 });
-
-console.log(sidebarLinks);
